@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe-Game </title>
+    <link rel="stylesheet" href="tictactoe.css">
+     <script src="tictactoe.js"></script>
+
+   
+</head>
+
+<body>
+
+ <h3><center> Welcome To Tic-Tac-Toe Game</center></h3>
+ <h4 id="game"><center>Lets Start</center></h4>
+ <table>
+
+    <!-- step 1 -->
+    <tr>
+        <td id="r1" onclick="show('1')"></td>
+        <td id="r2" onclick="show('2')"></td>
+        <td id="r3" onclick="show('3')"></td>
+    </tr>
+<!-- step 2 -->
+    <tr>
+        <td id="r4" onclick="show('4')"></td>
+        <td id="r5" onclick="show('5')"></td>
+        <td id="r6" onclick="show('6')"></td>
+        
+
+    </tr>
+   <!-- step 3 -->
+    <tr>
+        <td id="r7" onclick="show('7')"></td>
+        <td id="r8" onclick="show('8')"></td>
+        <td id="r9" onclick="show('9')"></td>
+        
+
+    </tr>
+
+
+ </table>
+
+
+ <script>
+
+
+let variable="x";
+let display=document.getElementById("game");
+
+function show(value){
+
+    let result=document.getElementById("r"+value);
+
+    console.log(result);
+    if(result.innerText==""){
+    result.innerText=variable;
+    winner();
+    checkVariable();
+    display.innerHTML="<center>"+ "Turn of "+ variable+"</center>";
+    
+    }
+ 
+
+}
+
+function checkVariable(){
+    if(variable=="x"){
+        variable="o";
+
+    }else{
+        variable="x";
+    }
+}
+
+function getbox(number){
+    return document.getElementById("r"+number).innerHTML;
+
+}
+
+function forMoving(a,b,c,d){
+    if(getbox(a)==d && getbox(b)==d && getbox(c)==d ){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+    function winner(){
+        if(forMoving(1,2,3,variable) || forMoving(4,5,6,variable)|| forMoving(7,8,9,variable) || forMoving(1,4,7,variable) || forMoving(2,5,8,variable)||forMoving(3,6,9,variable) ||forMoving(1,5,9,variable) || forMoving(7,5,3,variable)){
+    
+          display.innerHTML= "<center>"+variable + "<h2> wone The match !!! </h2> "+ "</center>"
+
+          for(let i=1;i<=9;i++){
+            document.getElementById("r"+i).innerHTML=" ";
+            
+          }
+          throw "Game Over";
+
+          }else{
+            if(getbox(1)!=""&&getbox(2)!=""&& getbox(3)!=""&&  getbox(4)!=""&&getbox(5)!=""&&getbox(6)!=""&& getbox(7)!=""&&  getbox(8)!=""&& getbox(9)!=""){
+                display.innerHTML="</center>"+"  Its a Tie"+ "</center> ";
+                throw "Its a Tie";
+            }
+       }
+        
+}
+
+ </script>
+
+
+</body>
+
+</html>
